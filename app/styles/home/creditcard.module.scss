@@ -1,0 +1,15 @@
+.credit-card-wrapper {
+   display: none;
+
+
+}
+
+@media only screen and (max-width: 426px) { // Mobile
+    .credit-card-wrapper {
+        display: block;
+        position: relative;           
+        width: auto;          
+        height: 50%;            
+        background-size: cover;
+    }
+}
