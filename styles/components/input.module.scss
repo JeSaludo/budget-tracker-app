@@ -1,0 +1,23 @@
+@use '@/styles/config' as config;
+
+.input-wrapper{
+    margin: 4px;
+
+    input{
+        width: 100%;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid config.$color-gray-dark;
+        font-family: config.$font-family-poppins;
+        font-size: 16px;
+        color: config.$color-black;
+        background-color: config.$color-white;
+
+        &:focus{
+            outline: none;
+            // border-color: config.$blue;
+            // box-shadow: 0 0 0 2px config.$blue-200;
+        }
+    }
+
+}

@@ -1,4 +1,4 @@
-@use '../config' as *;
+@use '@/styles/config' as *;
 
 
 
@@ -8,11 +8,10 @@
     height: 100vh;
       
     &__title {
-        color: $white;
+        color: $color-white;
         font-size: 3rem;
         font-weight: 700;
-        text-align: center;
-        
+        text-align: center;        
     }
     
 
@@ -34,7 +33,7 @@
     @media only screen and (min-width: 1025px) { // Desktop
         &__title {
             font-size: 3rem;
-            color: $white;
+            color: $color-white;
         }
     }
 

@@ -1,0 +1,6 @@
+@use '@/styles/config' as config;
+
+.layout-wrapper{
+    background-color: config.$color-dark-dark;
+    height: 100vh;
+}

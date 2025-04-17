@@ -1,0 +1,17 @@
+@use '@styles/config' as config;
+
+.card-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: config.$color-dark-light;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin: 16px;
+    width: 300px;
+    border: 1px solid config.$color-dark-light;
+    
+
+}
