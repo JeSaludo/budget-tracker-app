@@ -1,0 +1,42 @@
+@use 'config' as *;
+
+
+
+.home-wrapper {
+
+    background: linear-gradient(180deg, #0F0F0F, #1E1E1E, #292929, #333333);
+    height: 100vh;
+      
+    &__title {
+        color: $white;
+        font-size: 3rem;
+        font-weight: 700;
+        text-align: center;
+        
+    }
+    
+
+
+    @media only screen and (max-width: 426px) { // Mobile
+        &__title {
+            font-size: 1.5rem;
+            color: red;
+        }
+    }
+
+    @media only screen and (min-width: 426px) and (max-width: 1024px) { // Tablet
+        &__title {
+            font-size: 2rem;
+            color: orange;
+        }
+    }
+
+    @media only screen and (min-width: 1025px) { // Desktop
+        &__title {
+            font-size: 3rem;
+            color: $white;
+        }
+    }
+
+}
+
