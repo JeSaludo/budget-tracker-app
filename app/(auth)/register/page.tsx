@@ -21,7 +21,8 @@ export default function RegisterPage() {
     }));
   };
 
-  const [errors, setErrors] = useState<Partial<RegisterFormData>>({});
+  type ErrorState = Partial<RegisterFormData> & { general?: string };
+  const [errors, setErrors] = useState<ErrorState>({});
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
