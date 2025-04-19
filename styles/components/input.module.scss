@@ -1,9 +1,12 @@
 @use '@/styles/config' as config;
 
-.input-wrapper{
+.input-wrapper {
+    width: 100%; /* Ensure the wrapper takes up the full width */
+    max-width: 200px; /* Optional: Limit the maximum width */
+    margin: 0 auto; /* Center the input if needed */
     margin: 4px;
 
-    input{
+    input {
         width: 100%;
         padding: 8px;
         border-radius: 4px;
@@ -13,11 +16,22 @@
         color: config.$color-black;
         background-color: config.$color-white;
 
-        &:focus{
+        &:focus {
             outline: none;
             // border-color: config.$blue;
             // box-shadow: 0 0 0 2px config.$blue-200;
         }
     }
 
+    .required-wrapper {
+        color: white;
+        color: config.$color-error;
+        font-size: 12px;
+        min-height: 16px;
+    }
+
+    &:empty {
+        opacity: 0;
+    }
 }
+

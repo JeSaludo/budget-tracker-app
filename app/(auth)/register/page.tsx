@@ -4,6 +4,7 @@ import Input from '@/components/common/input';
 import { useState } from 'react';
 import type { RegisterFormData } from '@/types/user';
 import Card from '@/components/common/card';
+import Button from '@/components/common/button';
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState<RegisterFormData>({
@@ -19,13 +20,56 @@ export default function RegisterPage() {
       [name]: value,
     }));
   };
+
+  const [errors, setErrors] = useState<Partial<RegisterFormData>>({});
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Handle form submission logic here
+    const newErrors: Partial<RegisterFormData> = {};
+    if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Valid email is required';
+    }
+
+    if (!formData.username.trim()) {
+      newErrors.username = 'Username is required';
+    }
+
+    if (!formData.password || formData.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) return;
+
+    try {
+      const res = await fetch('/api/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = res.json();
+      console.log(data);
+    } catch (error) {}
+    console.log('Form submitted:', formData);
+  };
+
   return (
     <Layout>
       <Card>
         <div>
           <h1>Register</h1>
 
-          <form>
+          <form onSubmit={handleSubmit}>
             <Input
               value={formData.email}
               onChange={handleChange}
@@ -33,8 +77,10 @@ export default function RegisterPage() {
               type="email"
               name="email"
               id="email"
-              className="border p-2 mb-3"
+              className=""
+              errorMessage={errors.email}
             />
+
             <Input
               value={formData.username}
               onChange={handleChange}
@@ -42,8 +88,10 @@ export default function RegisterPage() {
               type="text"
               name="username"
               id="username"
-              className="border p-2 mb-3"
+              className=""
+              errorMessage={errors.username}
             />
+
             <Input
               value={formData.password}
               onChange={handleChange}
@@ -51,8 +99,11 @@ export default function RegisterPage() {
               type="password"
               name="password"
               id="password"
-              className="border p-2 mb-3"
+              className=""
+              errorMessage={errors.password}
             />
+
+            <Button type="submit">Create Account</Button>
           </form>
         </div>
       </Card>
