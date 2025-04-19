@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../prisma/generated/prisma/client"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model Budget {
+  id         BigInt   @id(map: "budget_pkey") @default(autoincrement())
+  amount     BigInt?  @default(0)
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+}
+
+model User {
+  id        String   @id @default(uuid()) @db.Uuid
+  email     String   @unique
+  password  String
+  username  String?
+  firstName String
+  lastName  String
+  createdAt DateTime @default(now())
+}
+
+
+
