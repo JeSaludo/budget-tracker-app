@@ -21,8 +21,13 @@ const Input: React.FC<InputProps> = ({
         name={name}
         id={id}
         className={`${className}`}
+        aria-describedby={errorMessage ? `${id}-error` : undefined}
       />
-      {errorMessage && <small className={styles['required-wrapper']}>{errorMessage}</small>}
+      {errorMessage && (
+        <small id={`${id}-error`} className={styles['required-wrapper']}>
+          {errorMessage}
+        </small>
+      )}
     </div>
   );
 };

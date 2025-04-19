@@ -57,9 +57,15 @@ export default function RegisterPage() {
         throw new Error('Network response was not ok');
       }
 
-      const data = res.json();
+      const data = await res.json();
       console.log(data);
-    } catch (error) {}
+    } catch (error) {
+      console.error('Error during form submission:', error);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        general: 'An error occurred during registration. Please try again.',
+      }));
+    }
     console.log('Form submitted:', formData);
   };
 
